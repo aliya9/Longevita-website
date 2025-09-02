@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback - Longevita</title>
+    <meta name="description" content="Share your feedback about Longevita and see what our community has to say about their wellness journey.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>Longevita</h2>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="features.html" class="nav-link">Features</a></li>
+                <li><a href="feedback.html" class="nav-link active">Feedback</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Community Feedback</h1>
+            <p>Share your experience and see what others are saying about Longevita</p>
+        </div>
+    </section>
+
+    <!-- Feedback Form Section -->
+    <section class="feedback-form-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Share Your Feedback</h2>
+                <p>We'd love to hear about your experience with Longevita</p>
+            </div>
+            
+            <div class="feedback-form-container">
+                <form id="feedbackForm" class="feedback-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Name *</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="feedbackType">Feedback Type *</label>
+                        <select id="feedbackType" name="feedbackType" required>
+                            <option value="">Select feedback type</option>
+                            <option value="general">General Feedback</option>
+                            <option value="feature">Feature Request</option>
+                            <option value="bug">Bug Report</option>
+                            <option value="improvement">Improvement Suggestion</option>
+                            <option value="praise">Praise/Testimonial</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="rating">How would you rate your experience? *</label>
+                        <div class="rating-stars">
+                            <input type="radio" id="star5" name="rating" value="5">
+                            <label for="star5"><i class="fas fa-star"></i></label>
+                            <input type="radio" id="star4" name="rating" value="4">
+                            <label for="star4"><i class="fas fa-star"></i></label>
+                            <input type="radio" id="star3" name="rating" value="3">
+                            <label for="star3"><i class="fas fa-star"></i></label>
+                            <input type="radio" id="star2" name="rating" value="2">
+                            <label for="star2"><i class="fas fa-star"></i></label>
+                            <input type="radio" id="star1" name="rating" value="1">
+                            <label for="star1"><i class="fas fa-star"></i></label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Your Feedback *</label>
+                        <textarea id="message" name="message" rows="6" placeholder="Tell us about your experience, suggestions, or any issues you've encountered..." required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="anonymous" id="anonymous">
+                            <span class="checkmark"></span>
+                            Share anonymously (your name won't be displayed publicly)
+                        </label>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Submit Feedback</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Feedback Section -->
+    <section class="community-feedback">
+        <div class="container">
+            <div class="section-header">
+                <h2>What Our Community Says</h2>
+                <p>Real feedback from people using Longevita</p>
+            </div>
+            
+            <div class="feedback-filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="praise">Praise</button>
+                <button class="filter-btn" data-filter="improvement">Suggestions</button>
+                <button class="filter-btn" data-filter="feature">Feature Requests</button>
+            </div>
+            
+            <div class="feedback-grid">
+                <div class="feedback-card" data-category="praise">
+                    <div class="feedback-header">
+                        <div class="feedback-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <span class="feedback-type">Praise</span>
+                    </div>
+                    <div class="feedback-content">
+                        <p>"Longevita has completely transformed how I approach my health. The daily check-ins help me stay accountable, and the personalized recommendations are spot-on!"</p>
+                    </div>
+                    <div class="feedback-footer">
+                        <span class="feedback-author">Sarah M.</span>
+                        <span class="feedback-date">2 days ago</span>
+                    </div>
+                </div>
+                
+                <div class="feedback-card" data-category="improvement">
+                    <div class="feedback-header">
+                        <div class="feedback-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                        <span class="feedback-type">Suggestion</span>
+                    </div>
+                    <div class="feedback-content">
+                        <p>"Love the app! It would be great to have more meal plan variety and maybe integration with grocery delivery services."</p>
+                    </div>
+                    <div class="feedback-footer">
+                        <span class="feedback-author">Alex K.</span>
+                        <span class="feedback-date">1 week ago</span>
+                    </div>
+                </div>
+                
+                <div class="feedback-card" data-category="feature">
+                    <div class="feedback-header">
+                        <div class="feedback-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <span class="feedback-type">Feature Request</span>
+                    </div>
+                    <div class="feedback-content">
+                        <p>"Would love to see a water tracking feature and maybe some guided meditation sessions integrated into the wellness plans."</p>
+                    </div>
+                    <div class="feedback-footer">
+                        <span class="feedback-author">Emma L.</span>
+                        <span class="feedback-date">3 days ago</span>
+                    </div>
+                </div>
+                
+                <div class="feedback-card" data-category="praise">
+                    <div class="feedback-header">
+                        <div class="feedback-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <span class="feedback-type">Praise</span>
+                    </div>
+                    <div class="feedback-content">
+                        <p>"The AI recommendations are incredible! It's like having a personal nutritionist who actually understands my body and preferences."</p>
+                    </div>
+                    <div class="feedback-footer">
+                        <span class="feedback-author">Michael R.</span>
+                        <span class="feedback-date">5 days ago</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="load-more">
+                <button class="btn btn-secondary">Load More Feedback</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feedback Stats -->
+    <section class="feedback-stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">4.8</div>
+                    <div class="stat-label">Average Rating</div>
+                    <div class="stat-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">2,847</div>
+                    <div class="stat-label">Happy Users</div>
+                    <div class="stat-icon">
+                        <i class="fas fa-smile"></i>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">156</div>
+                    <div class="stat-label">Features Added</div>
+                    <div class="stat-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">98%</div>
+                    <div class="stat-label">Satisfaction Rate</div>
+                    <div class="stat-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Longevita</h3>
+                    <p>Your trusted, food-first wellness companion</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="feedback.html">Feedback</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Longevita. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

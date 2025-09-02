@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Longevita Website Demo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #E8F5E8 0%, #A8D5BA 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .demo-container {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+        }
+        
+        .logo {
+            font-size: 2.5rem;
+            color: #2D5A27;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        
+        .title {
+            font-size: 1.8rem;
+            color: #2D5A27;
+            margin-bottom: 1rem;
+        }
+        
+        .subtitle {
+            color: #6C757D;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .feature {
+            padding: 1.5rem;
+            background: #F8F9FA;
+            border-radius: 12px;
+            border-left: 4px solid #2D5A27;
+        }
+        
+        .feature h3 {
+            color: #2D5A27;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .feature p {
+            color: #6C757D;
+            font-size: 0.9rem;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+        
+        .btn {
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #2D5A27, #4A7C59);
+            color: white;
+            box-shadow: 0 4px 15px rgba(45, 90, 39, 0.3);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(45, 90, 39, 0.4);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: #2D5A27;
+            border: 2px solid #2D5A27;
+        }
+        
+        .btn-secondary:hover {
+            background: #2D5A27;
+            color: white;
+        }
+        
+        .tech-stack {
+            margin-top: 2rem;
+            padding: 1rem;
+            background: #F8F9FA;
+            border-radius: 12px;
+        }
+        
+        .tech-stack h4 {
+            color: #2D5A27;
+            margin-bottom: 0.5rem;
+        }
+        
+        .tech-tags {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .tech-tag {
+            background: #E8F5E8;
+            color: #2D5A27;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        @media (max-width: 480px) {
+            .demo-container {
+                padding: 2rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+            }
+            
+            .features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-container">
+        <div class="logo">🌱 Longevita</div>
+        <h1 class="title">Website Demo</h1>
+        <p class="subtitle">A modern, responsive landing page for your food-first wellness app</p>
+        
+        <div class="features">
+            <div class="feature">
+                <h3>🎨 Modern Design</h3>
+                <p>Clean, minimal aesthetic with green color palette</p>
+            </div>
+            <div class="feature">
+                <h3>📱 Responsive</h3>
+                <p>Works perfectly on all devices and screen sizes</p>
+            </div>
+            <div class="feature">
+                <h3>⚡ Interactive</h3>
+                <p>Smooth animations and engaging user experience</p>
+            </div>
+            <div class="feature">
+                <h3>🚀 Fast & Light</h3>
+                <p>Optimized for performance and SEO</p>
+            </div>
+        </div>
+        
+        <div class="cta-buttons">
+            <a href="index.html" class="btn btn-primary">View Full Website</a>
+            <a href="README.md" class="btn btn-secondary">View Documentation</a>
+        </div>
+        
+        <div class="tech-stack">
+            <h4>Built With:</h4>
+            <div class="tech-tags">
+                <span class="tech-tag">HTML5</span>
+                <span class="tech-tag">CSS3</span>
+                <span class="tech-tag">JavaScript</span>
+                <span class="tech-tag">Responsive Design</span>
+                <span class="tech-tag">Modern CSS</span>
+                <span class="tech-tag">Font Awesome</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
