@@ -395,6 +395,181 @@ progressBarStyles.textContent = `
 `;
 document.head.appendChild(progressBarStyles);
 
+// Waitlist Signup Functionality
+document.addEventListener('DOMContentLoaded', () => {
+    const waitlistBtn = document.getElementById('waitlist-btn');
+    const waitlistEmail = document.getElementById('waitlist-email');
+    const waitlistSuccess = document.getElementById('waitlist-success');
+    const waitlistForm = document.querySelector('.waitlist-form');
+    
+    if (waitlistBtn && waitlistEmail && waitlistSuccess) {
+        waitlistBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const email = waitlistEmail.value.trim();
+            
+            // Basic email validation
+            if (!email || !isValidEmail(email)) {
+                showNotification('Please enter a valid email address.', 'error');
+                return;
+            }
+            
+            // Simulate saving email (replace with actual API call)
+            saveWaitlistEmail(email);
+            
+            // Update UI
+            waitlistBtn.textContent = 'Joined!';
+            waitlistBtn.disabled = true;
+            waitlistBtn.style.background = '#4CAF50';
+            waitlistBtn.style.cursor = 'not-allowed';
+            
+            // Hide form and show success message
+            waitlistForm.style.display = 'none';
+            waitlistSuccess.style.display = 'flex';
+            
+            // Show success notification
+            showNotification('Successfully joined our waitlist! We\'ll notify you when we launch.', 'success');
+        });
+    }
+});
+
+// Function to save waitlist email (replace with actual API call)
+function saveWaitlistEmail(email) {
+    // For now, we'll just store it in localStorage
+    // In a real application, you would send this to your backend
+    const waitlistEmails = JSON.parse(localStorage.getItem('waitlistEmails') || '[]');
+    waitlistEmails.push({
+        email: email,
+        timestamp: new Date().toISOString()
+    });
+    localStorage.setItem('waitlistEmails', JSON.stringify(waitlistEmails));
+    
+    console.log('Waitlist email saved:', email);
+    console.log('All waitlist emails:', waitlistEmails);
+}
+
+// Admin Panel Functionality
+document.addEventListener('DOMContentLoaded', () => {
+    // Check if admin panel should be shown
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('admin') === 'true') {
+        showAdminPanel();
+    }
+    
+    // Admin panel functionality
+    const exportBtn = document.getElementById('export-csv');
+    const clearBtn = document.getElementById('clear-emails');
+    
+    if (exportBtn) {
+        exportBtn.addEventListener('click', exportEmailsToCSV);
+    }
+    
+    if (clearBtn) {
+        clearBtn.addEventListener('click', clearAllEmails);
+    }
+});
+
+function showAdminPanel() {
+    const adminPanel = document.getElementById('admin-panel');
+    if (adminPanel) {
+        adminPanel.style.display = 'block';
+        loadEmailData();
+    }
+}
+
+function loadEmailData() {
+    const emails = JSON.parse(localStorage.getItem('waitlistEmails') || '[]');
+    const totalEmailsEl = document.getElementById('total-emails');
+    const todayEmailsEl = document.getElementById('today-emails');
+    const emailTableEl = document.getElementById('email-table');
+    
+    if (totalEmailsEl) {
+        totalEmailsEl.textContent = emails.length;
+    }
+    
+    // Count today's emails
+    const today = new Date().toDateString();
+    const todayEmails = emails.filter(email => 
+        new Date(email.timestamp).toDateString() === today
+    );
+    
+    if (todayEmailsEl) {
+        todayEmailsEl.textContent = todayEmails.length;
+    }
+    
+    // Display emails in table
+    if (emailTableEl) {
+        if (emails.length === 0) {
+            emailTableEl.innerHTML = '<div class="no-emails">No emails in waitlist yet.</div>';
+        } else {
+            emailTableEl.innerHTML = emails.map((email, index) => `
+                <div class="email-row">
+                    <div class="email-info">
+                        <div class="email-address">${email.email}</div>
+                        <div class="email-date">${new Date(email.timestamp).toLocaleString()}</div>
+                    </div>
+                    <div class="email-actions-row">
+                        <button class="btn btn-small btn-secondary" onclick="copyEmail('${email.email}')">Copy</button>
+                        <button class="btn btn-small btn-danger" onclick="removeEmail(${index})">Remove</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+    }
+}
+
+function exportEmailsToCSV() {
+    const emails = JSON.parse(localStorage.getItem('waitlistEmails') || '[]');
+    
+    if (emails.length === 0) {
+        showNotification('No emails to export.', 'error');
+        return;
+    }
+    
+    // Create CSV content
+    const csvContent = [
+        'Email,Signup Date',
+        ...emails.map(email => `"${email.email}","${new Date(email.timestamp).toLocaleString()}"`)
+    ].join('\n');
+    
+    // Create and download file
+    const blob = new Blob([csvContent], { type: 'text/csv' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `waitlist-emails-${new Date().toISOString().split('T')[0]}.csv`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    window.URL.revokeObjectURL(url);
+    
+    showNotification('Emails exported successfully!', 'success');
+}
+
+function clearAllEmails() {
+    if (confirm('Are you sure you want to clear all emails? This action cannot be undone.')) {
+        localStorage.removeItem('waitlistEmails');
+        loadEmailData();
+        showNotification('All emails cleared.', 'success');
+    }
+}
+
+function copyEmail(email) {
+    navigator.clipboard.writeText(email).then(() => {
+        showNotification('Email copied to clipboard!', 'success');
+    }).catch(() => {
+        showNotification('Failed to copy email.', 'error');
+    });
+}
+
+function removeEmail(index) {
+    const emails = JSON.parse(localStorage.getItem('waitlistEmails') || '[]');
+    emails.splice(index, 1);
+    localStorage.setItem('waitlistEmails', JSON.stringify(emails));
+    loadEmailData();
+    showNotification('Email removed.', 'success');
+}
+
 // Rating Stars Interaction
 document.addEventListener('DOMContentLoaded', () => {
     const ratingStars = document.querySelectorAll('.rating-stars');
