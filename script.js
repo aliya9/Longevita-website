@@ -397,16 +397,16 @@ document.head.appendChild(progressBarStyles);
 
 // Waitlist Signup Functionality
 document.addEventListener('DOMContentLoaded', () => {
-    const waitlistBtn = document.getElementById('waitlist-btn');
-    const waitlistEmail = document.getElementById('waitlist-email');
+    const waitlistForm = document.querySelector('form[name="waitlist"]');
     const waitlistSuccess = document.getElementById('waitlist-success');
-    const waitlistForm = document.querySelector('.waitlist-form');
+    const waitlistBtn = document.getElementById('waitlist-btn');
     
-    if (waitlistBtn && waitlistEmail && waitlistSuccess) {
-        waitlistBtn.addEventListener('click', function(e) {
+    if (waitlistForm && waitlistSuccess) {
+        // Handle form submission
+        waitlistForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
-            const email = waitlistEmail.value.trim();
+            const email = document.getElementById('waitlist-email').value.trim();
             
             // Basic email validation
             if (!email || !isValidEmail(email)) {
@@ -414,21 +414,42 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
             
-            // Simulate saving email (replace with actual API call)
-            saveWaitlistEmail(email);
-            
-            // Update UI
-            waitlistBtn.textContent = 'Joined!';
+            // Show loading state
+            waitlistBtn.textContent = 'Joining...';
             waitlistBtn.disabled = true;
-            waitlistBtn.style.background = '#4CAF50';
-            waitlistBtn.style.cursor = 'not-allowed';
             
-            // Hide form and show success message
-            waitlistForm.style.display = 'none';
-            waitlistSuccess.style.display = 'flex';
+            // Submit to Netlify
+            const formData = new FormData(waitlistForm);
             
-            // Show success notification
-            showNotification('Successfully joined our waitlist! We\'ll notify you when we launch.', 'success');
+            fetch('/', {
+                method: 'POST',
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: new URLSearchParams(formData).toString()
+            })
+            .then(() => {
+                // Update UI on success
+                waitlistBtn.textContent = 'Joined!';
+                waitlistBtn.style.background = '#4CAF50';
+                waitlistBtn.style.cursor = 'not-allowed';
+                
+                // Hide form and show success message
+                waitlistForm.style.display = 'none';
+                waitlistSuccess.style.display = 'flex';
+                
+                // Show success notification
+                showNotification('Successfully joined our waitlist! We\'ll notify you when we launch.', 'success');
+                
+                // Also save to localStorage for admin panel
+                saveWaitlistEmail(email);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                showNotification('Something went wrong. Please try again.', 'error');
+                
+                // Reset button
+                waitlistBtn.textContent = 'Join Waitlist';
+                waitlistBtn.disabled = false;
+            });
         });
     }
 });

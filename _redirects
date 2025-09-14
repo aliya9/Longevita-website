@@ -1,0 +1,5 @@
+# Netlify redirects file
+/*    /index.html   200
+
+# Handle form submissions
+/api/waitlist    /.netlify/functions/waitlist    200

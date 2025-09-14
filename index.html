@@ -160,10 +160,14 @@
             <div class="coming-soon-content">
                 <h2>Coming Soon</h2>
                 <p>We're putting the finishing touches on Longevita to ensure you get the best possible experience. Join our waitlist to be the first to know when we launch!</p>
-                <div class="waitlist-form">
-                    <input type="email" id="waitlist-email" placeholder="Enter your email address" class="waitlist-input" required>
-                    <button id="waitlist-btn" class="btn btn-primary">Join Waitlist</button>
-                </div>
+                <form name="waitlist" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="waitlist-form">
+                    <input type="hidden" name="form-name" value="waitlist" />
+                    <p style="display: none;">
+                        <label>Don't fill this out if you're human: <input name="bot-field" /></label>
+                    </p>
+                    <input type="email" id="waitlist-email" name="email" placeholder="Enter your email address" class="waitlist-input" required>
+                    <button type="submit" id="waitlist-btn" class="btn btn-primary">Join Waitlist</button>
+                </form>
                 <div id="waitlist-success" class="waitlist-success" style="display: none;">
                     <i class="fas fa-check-circle"></i>
                     <span>Thank you! You've been added to our waitlist.</span>
